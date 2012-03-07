@@ -1,5 +1,5 @@
 //
-// Mono.Net.Dns.DnsResourceRecordAAAA
+// Mono.Dns.Entities.ResolverAsyncOperation
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo.mono@gmail.com)
@@ -18,20 +18,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
 
-namespace Mono.Net.Dns {
-#if !NET_2_0
-	public
-#endif
-	class DnsResourceRecordAAAA : DnsResourceRecordIPAddress {
-		internal DnsResourceRecordAAAA (DnsResourceRecord rr)
-			: base (rr, 16)
-		{
-		}
-	}
+namespace Mono.Dns.Entities
+{
+    public enum ResolverAsyncOperation
+    {
+        None,
+        GetHostEntry,
+        GetHostAddresses,
+    }
 }
-

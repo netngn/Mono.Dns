@@ -1,5 +1,5 @@
 //
-// Mono.Net.Dns.SimpleResolver
+// Mono.Dns.Entities.SimpleResolver
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo.mono@gmail.com)
@@ -18,32 +18,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Net;
-using System.Net.Sockets;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Mono.Dns.Entities;
+using Mono.Dns.Entities;
 
-namespace Mono.Net.Dns {
-#if !NET_2_0
-	public
-#endif
-	sealed class SimpleResolver : IDisposable {
-		static string [] EmptyStrings = new string [0];
-		static IPAddress [] EmptyAddresses = new IPAddress [0];
-		IPEndPoint [] endpoints;
-		Socket client;
-		Dictionary<int, SimpleResolverEventArgs> queries;
-		AsyncCallback receive_cb;
-		TimerCallback timeout_cb;
-		bool disposed;
-#if REUSE_RESPONSES
+namespace Mono.Dns
+{
+    internal sealed class SimpleResolver : IDisposable
+    {
+        private static string[] EmptyStrings = new string[0];
+        private static IPAddress[] EmptyAddresses = new IPAddress[0];
+        private IPEndPoint[] endpoints;
+        private Socket client;
+        private Dictionary<int, SimpleResolverEventArgs> queries;
+        private AsyncCallback receive_cb;
+        private TimerCallback timeout_cb;
+        private bool disposed;
+
 		Stack<DnsResponse> responses_avail = new Stack<DnsResponse> ();
-#endif
+
 
 		public SimpleResolver ()
 		{
@@ -79,11 +80,7 @@ namespace Mono.Net.Dns {
 			args.ResolverError = 0;
 			args.HostEntry = entry;
 
-#if NET_4_0
 			bool ipv4 = Socket.OSSupportsIPv4;
-#else
-			bool ipv4 = Socket.SupportsIPv4;
-#endif
 			bool ipv6 = Socket.OSSupportsIPv6;
 			List<IPAddress> ips = new List<IPAddress> ();
 			if (ipv4)
@@ -255,34 +252,12 @@ namespace Mono.Net.Dns {
 
 		byte [] GetFreshBuffer ()
 		{
-#if !REUSE_RESPONSES
-			return new byte [512];
-#else
 
-			DnsResponse response = null;
-			lock (responses_avail) {
-				if (responses_avail.Count > 0) {
-					response = responses_avail.Pop ();
-				}
-			}
-			if (response == null) {
-				response = new DnsResponse ();
-			} else {
-				response.Reset ();
-			}
-			return response;
-#endif
+            return new byte[512];
+
 		}
 
-		void FreeBuffer (byte [] buffer)
-		{
-#if REUSE_RESPONSES
-			// TODO: set some limit here. Configurable?
-			lock (responses_avail) {
-				responses_avail.Push (response);
-			}
-#endif
-		}
+		
 
 		void InitSocket ()
 		{
@@ -368,7 +343,7 @@ namespace Mono.Net.Dns {
 					}
 				}
 			}
-			FreeBuffer (buffer);
+
 		}
 
 		void ProcessResponse (SimpleResolverEventArgs args, DnsResponse response, EndPoint server_ep)

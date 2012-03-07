@@ -1,5 +1,5 @@
 //
-// Mono.Net.Dns.DnsRCode
+// Mono.Dns.Entities.DnsClass
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo.mono@gmail.com)
@@ -18,30 +18,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Mono.Net.Dns {
-#if !NET_2_0
-	public
-#endif
-	enum DnsRCode : ushort {
-		NoError = 0,
-		FormErr = 1,
-		ServFail = 2,
-		NXDomain = 3,
-		NotImp = 4,
-		Refused = 5,
-		YXDomain = 6,
-		YXRRSet = 7,
-		NXRRSet = 8,
-		NotAuth = 9,
-		NotZone = 10,
-		BadVers = 16,
-		BadSig = 16,
-		BadKey = 17,
-		BadTime = 18,
-		BadMode = 19,
-		BadName = 20,
-		BadAlg = 21,
-		BadTrunc = 22,
-	}
-}
 
+namespace Mono.Dns.Entities
+{
+    public
+        enum DnsClass : ushort
+    {
+        Internet = 1,
+        IN = 1,
+        CSNET = 2,
+        CS = 2,
+        CHAOS = 3,
+        CH = 3,
+        Hesiod = 4,
+        HS = 4,
+    }
+}

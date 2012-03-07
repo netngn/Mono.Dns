@@ -1,0 +1,5 @@
+C:\Development\MailNGN\OpenSource\Mono.Dns\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\MailNGN\OpenSource\Mono.Dns\bin\Debug\Mono.Dns.dll
+C:\Development\MailNGN\OpenSource\Mono.Dns\bin\Debug\Mono.Dns.pdb
+C:\Development\MailNGN\OpenSource\Mono.Dns\obj\Debug\Mono.Dns.dll
+C:\Development\MailNGN\OpenSource\Mono.Dns\obj\Debug\Mono.Dns.pdb

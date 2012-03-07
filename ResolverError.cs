@@ -1,4 +1,4 @@
-// Mono.Net.Dns.ResolverError
+// Mono.Dns.Entities.ResolverError
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo.mono@gmail.com)
@@ -17,21 +17,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Mono.Net.Dns {
-#if !NET_2_0
-	public
-#endif
-	enum ResolverError {
-		NoError,		// From DNS server
-		FormatError,		//
-		ServerFailure,		//
-		NameError,		//
-		NotImplemented,		//
-		Refused,		//
-		// Resolver specific
-		ResponseHeaderError,
-		ResponseFormatError,
-		Timeout,
-	}
-}
 
+namespace Mono.Dns.Entities
+{
+    public
+        enum ResolverError
+    {
+        NoError, // From DNS server
+        FormatError, //
+        ServerFailure, //
+        NameError, //
+        NotImplemented, //
+        Refused, //
+        // Resolver specific
+        ResponseHeaderError,
+        ResponseFormatError,
+        Timeout,
+    }
+}

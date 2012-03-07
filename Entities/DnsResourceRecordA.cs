@@ -1,5 +1,5 @@
 //
-// Mono.Net.Dns.DnsOpCode
+// Mono.Dns.Entities.DnsResourceRecordA
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo.mono@gmail.com)
@@ -18,17 +18,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-using System;
-namespace Mono.Net.Dns {
-#if !NET_2_0
-	public
-#endif
-	enum DnsOpCode : byte {
-		Query = 0,
-		[Obsolete] IQuery = 1,
-		Status = 2,
-		Notify = 4,
-		Update = 5,
-	}
-}
 
+using Mono.Dns.Entities;
+
+namespace Mono.Dns.Entities
+{
+    public
+        class DnsResourceRecordA : DnsResourceRecordIPAddress
+    {
+        internal DnsResourceRecordA(DnsResourceRecord rr)
+            : base(rr, 4)
+        {
+        }
+    }
+}
